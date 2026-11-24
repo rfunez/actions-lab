@@ -1,0 +1,20 @@
+name: 01- hello
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - main
+jobs:
+  saludo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "saludar repo"
+        run: echo "Saludos desde ${{github.repository}}"
+      - name: "checkout"
+        uses: "actions/checkout@v4"
+      - name: "listar"
+        run: ls -latr
+          
+        
+  
