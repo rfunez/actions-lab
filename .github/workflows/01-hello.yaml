@@ -12,8 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "saludar repo"
-        run: echo "Saludos desde la rama ${{github.ref_name}} del repo ${{github.repository}}"
+        env:
+          RAMA: ${{github.ref_name}}
+          REPO: ${{github.repository}}
+          EVENTO: ${{github.event_name}}
+        run: |
+             echo "Saludos desde la rama $RAMA del repo $REPO"
+             echo "Evento disparado $EVENTO"
       - name: "checkout"
-        uses: "actions/checkout@v4"
+        uses: actions/checkout@v4
+      - name: "dir actual"
+        run: pwd
       - name: "listar"
         run: ls -latr
