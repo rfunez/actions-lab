@@ -1,0 +1,29 @@
+name: 02- Runners
+on:
+  workflow_dispatch:
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print-system"
+        run: |
+             echo "SO: $RUNNER_OS/$RUNNER_ARCH"
+             echo "Number of cpus: $(nproc)"
+             echo "Total memory: $(free -h)"
+             echo "Free space: $(df -h /)"
+             echo "Java version: $(java --version)"
+             echo "Node version: node -v"
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: "print-system"
+        shell: pwsh
+        run: |
+             echo "SO: $env:RUNNER_OS/$env:RUNNER_ARCH"
+  after:
+    runs-on: ubuntu-latest
+    needs: ["linux","windows"]
+    steps:
+      - name: "after"
+        run: echo "Workflow ${{github.workflow}}"
+
