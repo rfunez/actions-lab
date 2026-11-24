@@ -1,4 +1,4 @@
-name: 01- Hello
+name: 01-Hello
 on:
   workflow_dispatch:
   push:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "saludar repo"
-        run: echo "Saludos desde ${{github.repository}}"
+        run: echo "Saludos desde la rama ${{github.ref_name}} del repo ${{github.repository}}"
       - name: "checkout"
         uses: "actions/checkout@v4"
       - name: "listar"
