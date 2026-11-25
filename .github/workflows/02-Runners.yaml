@@ -21,7 +21,6 @@ jobs:
              echo "Free space: $(df -h /)"
              echo "Java version: $(java --version)"
              echo "Node version: node -v"
-             exit 1
   windows:
     runs-on: windows-latest
     steps:
