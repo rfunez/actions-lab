@@ -16,4 +16,4 @@ jobs:
         run: |
              echo "Variable from wf: ${{env.APP}}"
              echo "Variable from github: ${{vars.APP}}"
-             echo "Node version in repository: ${{vas.NODE_VERSION}}"
+             echo "Node version in repository: ${{vars.NODE_VERSION}}"
