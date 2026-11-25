@@ -1,4 +1,4 @@
-name: 02-VarsSecrets
+name: 03-VarsSecrets
 on:
   push:
     branches:
