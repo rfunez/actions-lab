@@ -10,8 +10,10 @@ env:
 jobs:
   linux:
     runs-on: ubuntu-latest
+    environment: develop  
     steps:
       - name: print-env
         run: |
              echo "Variable from wf: ${{env.APP}}"
              echo "Variable from github: ${{vars.APP}}"
+             echo "Node version in repository: ${{vas.NODE_VERSION}}"
