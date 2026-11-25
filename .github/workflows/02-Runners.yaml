@@ -15,6 +15,7 @@ jobs:
              echo "Free space: $(df -h /)"
              echo "Java version: $(java --version)"
              echo "Node version: node -v"
+             exit 1
   windows:
     runs-on: windows-latest
     steps:
@@ -22,10 +23,10 @@ jobs:
         shell: pwsh
         run: |
              echo "SO $env:RUNNER_OS/$env:RUNNER_ARCH"
-             exit 1
   after:
     runs-on: ubuntu-latest
     needs: ["linux","windows"]
+    if: always()
     steps:
       - name: "after"
         run: echo "Workflow ${{github.workflow}}"
