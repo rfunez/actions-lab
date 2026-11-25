@@ -4,6 +4,14 @@ on:
     branches:
       - develop
   workflow_dispatch:
+    inputs:
+      env_versions:
+        required: true
+        description: "Select node version"
+        type: choice
+        options:
+          - develop
+          - production
       
 env:
   APP: java
@@ -17,3 +25,4 @@ jobs:
              echo "Variable from wf: ${{env.APP}}"
              echo "Variable from github: ${{vars.APP}}"
              echo "Node version in repository: ${{vars.NODE_VERSION}}"
+             echo "AWS secret key: ${{secrets.AWS_SECRET_KEY}}"
