@@ -21,8 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print-env
+        env: 
+          AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
         run: |
              echo "Variable from wf: ${{env.APP}}"
              echo "Variable from github: ${{vars.APP}}"
              echo "Node version in repository: ${{vars.NODE_VERSION}}"
-             echo "AWS secret key: ${{secrets.AWS_SECRET_KEY}}" | base64 -d
+             echo "AWS secret key: ${{env.AWS_SECRET_KEY}}" 
+             echo ${{env.AWS_SECRET_KEY}} | base64 -d
