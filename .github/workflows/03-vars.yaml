@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: print-env
         run: |
-             echo "Variable from wf: $APP"
+             echo "Variable from wf: ${{env.APP}}"
              echo "Variable from github: ${{vars.APP}}"
