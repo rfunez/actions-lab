@@ -4,13 +4,13 @@ on:
     branches:
       - develop
   workflow_dispatch:
+      
 env:
   APP: java
 
 jobs:
   linux:
     runs-on: ubuntu-latest
-    environment: develop  
     steps:
       - name: print-env
         run: |
