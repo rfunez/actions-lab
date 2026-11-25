@@ -36,7 +36,7 @@ jobs:
              echo "Branch name: ${{github.ref_name}}"
              echo "Actor: ${{github.actor}}"
              echo "Inputs: ${{env.NOMBRE}}/${{env.ENTORNO}}/${{env.VERBOSE}}"
-      - if: ${{env.VERBOSE}}
+      - if: ${{env.VERBOSE == 'true'}}
         run: |
              ls -la
              printenv
