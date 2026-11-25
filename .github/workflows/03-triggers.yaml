@@ -20,7 +20,7 @@ on:
           - dev
           - staging
       verbose:
-        type: bool
+        type: boolean
   schedule:
     - cron: 0 7 * * *
 jobs:
@@ -35,7 +35,7 @@ jobs:
              echo "Event name: ${{github.event_name}}"
              echo "Rama: ${{github.ref_name}}"
              echo "Actor: ${{github.actor}}"
-             echo "Inputs: ${{NOMBRE}}/${{ENTORNO}}/${{VERBOSE}}"
+             echo "Inputs: ${{env.NOMBRE}}/${{env.ENTORNO}}/${{env.VERBOSE}}"
       - if: ${{env.VERBOSE}}
         run: |
              ls -la
