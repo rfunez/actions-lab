@@ -5,7 +5,7 @@ on:
       - develop
   workflow_dispatch:
     inputs:
-      env_versions:
+      node_versions:
         required: true
         description: "Select node version"
         type: choice
@@ -15,10 +15,10 @@ on:
       
 env:
   APP: java
-
 jobs:
   linux:
     runs-on: ubuntu-latest
+    environment: ${{inputs.node_versions}}
     steps:
       - name: print-env
         env: 
@@ -28,4 +28,3 @@ jobs:
              echo "Variable from github: ${{vars.APP}}"
              echo "Node version in repository: ${{vars.NODE_VERSION}}"
              echo "AWS secret key: ${{env.AWS_SECRET_KEY}}" 
-             echo ${{env.AWS_SECRET_KEY}} | base64 -d
