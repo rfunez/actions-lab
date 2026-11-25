@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: "create-file"
         run: |
-             echo "data source" > $FILE
+             echo "data source" > "$FILE"
              ls -latr
       - name: "print-system"
         run: |
@@ -20,7 +20,7 @@ jobs:
              echo "Total memory: $(free -h)"
              echo "Free space: $(df -h /)"
              echo "Java version: $(java --version)"
-             echo "Node version: node -v"
+             echo "Node version: $(node -v)"
   windows:
     runs-on: windows-latest
     steps:
@@ -36,5 +36,5 @@ jobs:
       - name: "after"
         run: echo "Workflow ${{github.workflow}}"
       - name: "checking file"
-        run: cat $FILE
+        run: cat "$FILE"
 

@@ -1,0 +1,17 @@
+name: 02-VarsSecrets
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+env:
+  APP: java
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print-env
+        run: |
+             echo "Variable from wf: $APP"
+             echo "Variable from github: ${{vars.APP}}"
