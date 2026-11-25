@@ -1,0 +1,30 @@
+name: 03-VarsSecrets
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      node_versions:
+        required: true
+        description: "Select node version"
+        type: choice
+        options:
+          - develop
+          - production
+      
+env:
+  APP: java
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.node_versions}}
+    steps:
+      - name: print-env
+        env: 
+          AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
+        run: |
+             echo "Variable from wf: ${{env.APP}}"
+             echo "Variable from github: ${{vars.APP}}"
+             echo "Node version in repository: ${{vars.NODE_VERSION}}"
+             echo "AWS secret key: ${{env.AWS_SECRET_KEY}}" 
