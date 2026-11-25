@@ -3,10 +3,16 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+env:
+  FILE: "data.txt"
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
+      - name: "create-file"
+        run: |
+             echo "data source" > $FILE
+             ls -latr
       - name: "print-system"
         run: |
              echo "SO: $RUNNER_OS/$RUNNER_ARCH"
@@ -30,4 +36,6 @@ jobs:
     steps:
       - name: "after"
         run: echo "Workflow ${{github.workflow}}"
+      - name: "checking file"
+        run: cat $FILE
 
