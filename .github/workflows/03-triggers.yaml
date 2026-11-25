@@ -1,0 +1,44 @@
+name: 03-Triggers
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
+  workflow_dispatch:
+    inputs:
+      nombre:
+        required: true
+        type: string
+        default: "admin"
+      entorno:
+        type: choice
+        options:
+          - dev
+          - staging
+      verbose:
+        type: boolean
+  schedule:
+    - cron: 0 7 * * *
+jobs:
+  imprimir:
+    runs-on: ubuntu-latest
+    env:
+      NOMBRE: ${{inputs.nombre}}
+      ENTORNO: ${{inputs.entorno}}
+      VERBOSE: ${{inputs.verbose}}
+    steps:
+      - run: |
+             echo "Event name: ${{github.event_name}}"
+             echo "Branch name: ${{github.ref_name}}"
+             echo "Actor: ${{github.actor}}"
+             echo "Inputs: ${{env.NOMBRE}}/${{env.ENTORNO}}/${{env.VERBOSE}}"
+      - if: ${{env.VERBOSE}}
+        run: |
+             ls -la
+             printenv
+             
+    
