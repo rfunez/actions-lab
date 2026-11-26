@@ -10,6 +10,9 @@ on:
       - reopened
   workflow_dispatch:
     inputs:
+      test:
+        type: string
+        required: true
       nombre:
         required: true
         type: string
@@ -27,16 +30,19 @@ jobs:
   imprimir:
     runs-on: ubuntu-latest
     env:
-      NOMBRE: ${{inputs.nombre}}
-      ENTORNO: ${{inputs.entorno}}
-      VERBOSE: ${{inputs.verbose}}
+      NOMBRE: "${{inputs.nombre}}"
+      ENTORNO: "${{inputs.entorno}}"
+      VERBOSE: "${{inputs.verbose}}"
+      RAMA: "${{github.ref_name}}"
+      EVENTO: "${{github.event_name}}"
+      ACTOR: "${{github.actor}}"
     steps:
       - run: |
-             echo "Event name: ${{github.event_name}}"
-             echo "Rama: ${{github.ref_name}}"
-             echo "Actor: ${{github.actor}}"
+             echo "Event name: ${{env.EVENTO}}"
+             echo "Rama: ${{env.RAMA}}"
+             echo "Actor: ${{env.ACTOR}}"
              echo "Inputs: ${{env.NOMBRE}}/${{env.ENTORNO}}/${{env.VERBOSE}}"
-      - if: ${{env.VERBOSE}}
+      - if: ${{env.VERBOSE == 'true'}}
         run: |
              ls -la
              printenv
