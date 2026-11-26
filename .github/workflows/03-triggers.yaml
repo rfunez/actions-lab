@@ -10,6 +10,9 @@ on:
       - reopened
   workflow_dispatch:
     inputs:
+      test:
+        type: string
+        required: true
       nombre:
         required: true
         type: string
